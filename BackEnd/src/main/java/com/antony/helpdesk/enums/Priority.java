@@ -1,6 +1,6 @@
 package com.antony.helpdesk.enums;
 
-public enum Prioridade {
+public enum Priority {
 
     BAIXA(0,"BAIXA"),
     MEDIA(1,"MEDIA"),
@@ -9,17 +9,17 @@ public enum Prioridade {
     private Integer id;
     private String description;
 
-    private Prioridade(Integer id, String description) {
+    private Priority(Integer id, String description) {
         this.id = id;
         this.description = description;
     }
 
-    public static Prioridade getEnum(Integer id){
+    public static Priority getEnum(Integer id){
         if(id == null){
             return null;
         }
         
-        for(Prioridade status : Prioridade.values()){
+        for(Priority status : Priority.values()){
             if(id.equals(status.getId())){
                 return status;
             }

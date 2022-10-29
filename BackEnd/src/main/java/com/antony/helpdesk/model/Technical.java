@@ -10,18 +10,18 @@ import java.util.List;
 
 @Data
 @Entity
-public class Tecnico extends Person {
+public class Technical extends Person {
 
     private static final long serialVersionUID = 1L;
 
     @OneToMany(mappedBy = "tecnico")
-    private List<Chamado> chamados = new ArrayList<>();
+    private List<Call> chamados = new ArrayList<>();
 
-    public Tecnico() {
+    public Technical() {
         super();
     }
 
-    public Tecnico(Integer personId, String name, String cpf, String email, String password) {
+    public Technical(Integer personId, String name, String cpf, String email, String password) {
         super(personId, name, cpf, email, password);
     }
 

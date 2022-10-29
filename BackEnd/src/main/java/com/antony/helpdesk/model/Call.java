@@ -12,16 +12,16 @@ import java.util.Objects;
 
 @Data
 @Entity
-public class Chamado implements Serializable {
+public class Call implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDate dateOpening = LocalDate.now();
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDate dateClosed;
     private Priority priority;
     private Status status;
@@ -29,16 +29,16 @@ public class Chamado implements Serializable {
     private String observations;
 
     @ManyToOne
-    private Tecnico tecnico;
+    private Technical tecnico;
     @ManyToOne
-    private Cliente cliente;
+    private Client cliente;
 
-    public Chamado() {
+    public Call() {
         super();
     }
 
 
-    public Chamado(Integer id, Priority priority, Status status, String title, String observations, Tecnico tecnico, Cliente cliente) {
+    public Call(Integer id, Priority priority, Status status, String title, String observations, Technical tecnico, Client cliente) {
         super();
         this.id = id;
         this.priority = priority;
@@ -52,7 +52,7 @@ public class Chamado implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Chamado chamado)) return false;
+        if (!(o instanceof Call chamado)) return false;
         return id.equals(chamado.id);
     }
 

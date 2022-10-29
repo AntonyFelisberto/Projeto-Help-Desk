@@ -11,19 +11,19 @@ import java.util.List;
 
 @Data
 @Entity
-public class Cliente extends Person {
+public class Client extends Person {
 
     private static final long serialVersionUID = 1L;
 
     @OneToMany(mappedBy = "cliente")
-    private List<Chamado> chamados = new ArrayList<>();
+    private List<Call> chamados = new ArrayList<>();
 
-    public Cliente() {
+    public Client() {
         super();
         addPerfil(Profile.CLIENTE);
     }
 
-    public Cliente(Integer personId, String name, String cpf, String email, String password) {
+    public Client(Integer personId, String name, String cpf, String email, String password) {
         super(personId, name, cpf, email, password);
         addPerfil(Profile.CLIENTE);
     }

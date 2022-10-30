@@ -4,13 +4,14 @@
         <img src="../../../assets/img/login.svg" alt="help desk">
         <mat-form-field class="full-width" appearance="fill">
           <mat-label>Email</mat-label>
-          <input matInput placeholder="Ex. nomeEmail@mail.com">
+          <input [formControl]="email" [(ngModel)]="credentials.email" matInput placeholder="Ex. nomeEmail@mail.com" required>
         </mat-form-field>
 
         <mat-form-field class="full-width" appearance="fill">
             <mat-label>Password</mat-label>
-            <input type="password" matInput placeholder="12345">
+            <input [formControl]="password" type="password" [(ngModel)]="credentials.password" matInput placeholder="12345" required>
           </mat-form-field> 
-          <button mat-raised-button class="full-width mat-elevation-z4" color="accent">Primary</button>
+          <h1>{{credentials.email + credentials.password}}</h1>
+          <button [disabled]="!validation()" mat-raised-button class="full-width mat-elevation-z4" color="accent">Logar</button>
       </form>    
 </div>

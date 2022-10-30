@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Credentials } from 'src/app/models/Credentials';
+import { AuthenticateService } from 'src/app/services/authenticate/authenticate.service';
 
 @Component({
   selector: 'app-login',
@@ -18,23 +19,23 @@ export class LoginComponent implements OnInit {
   email = new FormControl(null, Validators.email)
   password = new FormControl(null, Validators.minLength(3))
 
-  constructor(private toast: ToastrService) { }
+  constructor(private toast: ToastrService,
+              private loginService:AuthenticateService) { }
 
   ngOnInit(): void {
   }
 
   logar(){
-    this.toast.error("Usuario e/ou senha invalidos!","Login")
-    this.credentials.email = ''
-    this.credentials.password = ''    
+    this.loginService.autenticate(this.credentials).subscribe( response =>{
+      this.toast.info(response.headers.get('Authorization'))
+      this.loginService.sucessFullLogin(response.headers.get('Authorization').substring(7));
+    },() =>{
+      this.toast.error('Usuario e/ou senha invalidos');
+    })
   }
 
   validation():boolean{
-    if(this.email.valid && this.password.valid){
-      return true;
-    }else{
-      return false;
-    }
+    return this.email.valid && this.password.valid
   }
 
 }

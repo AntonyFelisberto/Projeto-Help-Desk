@@ -28,13 +28,15 @@ import {MatListModule} from '@angular/material/list'
 import {MatCardModule} from '@angular/material/card';
 import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home/home.component';
-import { HeaderComponent } from './components/header/header.component'
+import { HeaderComponent } from './components/header/header.component';
+import { TechnicalComponent } from './components/technical/technical.component'
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     HomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    TechnicalComponent
   ],
   imports: [
     BrowserModule,

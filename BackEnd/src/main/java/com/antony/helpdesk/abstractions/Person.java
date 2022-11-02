@@ -54,7 +54,7 @@ public abstract class Person implements Serializable {
     }
 
     public void addPerfil(Profile perfil){
-        this.profile.add(perfil.getId());
+        this.profile.add(perfil.getCode());
     }
 
     @Override

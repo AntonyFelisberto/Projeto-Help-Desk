@@ -34,7 +34,6 @@ public class SecurityConfig {
                 Arrays.asList(environment.getActiveProfiles()).contains("hom")){
             http.headers().frameOptions().disable();
         }
-        http.cors().and().csrf().disable();
         http.authorizeRequests().antMatchers(SECURE_PATTERNS).permitAll().anyRequest().authenticated();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

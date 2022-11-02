@@ -1,5 +1,6 @@
 package com.antony.helpdesk.services;
 
+import com.antony.helpdesk.exceptions.NotFoundException;
 import com.antony.helpdesk.model.Technical;
 import com.antony.helpdesk.repositories.TechnicalRepository;
 import lombok.AllArgsConstructor;
@@ -16,7 +17,7 @@ public class TechnicalServices {
 
 
     public Technical findById(Integer id){
-        return technicalRepository.findById(id).orElse(null);
+        return technicalRepository.findById(id).orElseThrow(() -> new NotFoundException("Objeto não encontrado pelo id: "+id));
     }
 
 }

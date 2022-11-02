@@ -6,22 +6,22 @@ public enum Profile {
     CLIENTE(1, "ROLE_CLIENTE"),
     TECNICO(2, "ROLE_TECNICO");
 
-    private Integer id;
+    private Integer code;
     private String description;
 
 
-    private Profile(Integer id, String description) {
-        this.id = id;
+    private Profile(Integer code, String description) {
+        this.code = code;
         this.description = description;
     }
 
-    public static Profile toEnum(Integer id){
-        if(id == null){
+    public static Profile toEnum(Integer code){
+        if(code == null){
             return null;
         }
 
         for (Profile perfil : Profile.values()) {
-            if(id.equals(perfil.getId())){
+            if(code.equals(perfil.getCode())){
                 return perfil;
             }
         }
@@ -29,8 +29,8 @@ public enum Profile {
         throw new IllegalArgumentException("Perfil invalido");
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getCode() {
+        return code;
     }
 
     public String getDescription() {

@@ -3,6 +3,8 @@ package com.antony.helpdesk.dto;
 import com.antony.helpdesk.enums.Profile;
 import com.antony.helpdesk.model.Technical;
 import com.fasterxml.jackson.annotation.JsonFormat;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -12,9 +14,13 @@ import java.util.stream.Collectors;
 public class TechnicalDTO implements Serializable {
 
     protected Integer personId;
+    @NotNull(message = "Campo name é requerido")
     protected String name;
+    @NotNull(message = "Campo cpf é requerido")
     protected String cpf;
+    @NotNull(message = "Campo email é requerido")
     protected String email;
+    @NotNull(message = "Campo password é requerido")
     protected String password;
     protected Set<Integer> profile = new HashSet<>();
     @JsonFormat(pattern = "dd/MM/yyyy")

@@ -8,10 +8,7 @@ import com.antony.helpdesk.model.Technical;
 import com.antony.helpdesk.repositories.PersonRepository;
 import com.antony.helpdesk.repositories.TechnicalRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.Optional;

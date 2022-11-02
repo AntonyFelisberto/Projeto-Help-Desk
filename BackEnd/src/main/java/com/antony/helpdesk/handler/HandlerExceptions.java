@@ -1,6 +1,7 @@
 package com.antony.helpdesk.handler;
 
 import com.antony.helpdesk.erros.StandardError;
+import com.antony.helpdesk.exceptions.DataIntegrityException;
 import com.antony.helpdesk.exceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,12 @@ public class HandlerExceptions {
     public ResponseEntity<StandardError> notFoundException(NotFoundException exception, HttpServletRequest request){
         StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.NOT_FOUND.value(),"objeto não encontrado",exception.getMessage(),request.getRequestURI());
         return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(error);
+    }
+
+    @ExceptionHandler(DataIntegrityException.class)
+    public ResponseEntity<StandardError> dataIntegrityViolation(DataIntegrityException exception, HttpServletRequest request){
+        StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(),"violação de dados",exception.getMessage(),request.getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(error);
     }
 
 }

@@ -5,7 +5,9 @@ import com.antony.helpdesk.model.Technical;
 import com.antony.helpdesk.services.TechnicalServices;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +28,13 @@ public class TechnicalResources {
         List<Technical> technicals = technicalServices.findAll();
         List<TechnicalDTO> technical = technicals.stream().map(x -> new TechnicalDTO(x)).collect(Collectors.toList());
         return ResponseEntity.ok().body(technical);
+    }
+
+    @PostMapping
+    public ResponseEntity<TechnicalDTO> create(@RequestBody TechnicalDTO technicalDto){
+        Technical technical = technicalServices.create(technicalDto);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(technical.getPersonId()).toUri();
+        return ResponseEntity.created(uri).build();
     }
 
 }

@@ -38,4 +38,9 @@ public class TechnicalResources {
         return ResponseEntity.created(uri).build();
     }
 
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id){
+        technicalServices.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

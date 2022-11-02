@@ -19,7 +19,9 @@ import java.util.Arrays;
 public class DataBaseServices {
 
     private final CallRepository callRepository;
+
     private final TechnicalRepository technicalRepository;
+
     private final ClientRepository clientRepository;
 
     private BCryptPasswordEncoder encoder;

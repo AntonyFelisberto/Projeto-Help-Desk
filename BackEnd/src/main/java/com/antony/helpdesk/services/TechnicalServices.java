@@ -46,4 +46,13 @@ public class TechnicalServices {
             throw new DataIntegrityException("Email ja cadastrado no sistema");
         }
     }
+
+    public void delete(Integer id) {
+        Technical technical = findById(id);
+        if(technical.getChamados().size() > 0){
+            throw new DataIntegrityException("Tecnico possui ordens de serviço e não pode ser deletado");
+        }else{
+            technicalRepository.deleteById(id);
+        }
+    }
 }

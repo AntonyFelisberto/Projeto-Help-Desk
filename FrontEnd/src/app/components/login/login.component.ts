@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   logar(){
     this.loginService.autenticate(this.credentials).subscribe( response =>{
-      this.toast.info(response.headers.get('Authorization'))
+      //PEGA O TOKEN DA RESPOSTA E TIRA O BEARER+ESPAÇAMENTO
       this.loginService.sucessFullLogin(response.headers.get('Authorization').substring(7));
     },() =>{
       this.toast.error('Usuario e/ou senha invalidos');

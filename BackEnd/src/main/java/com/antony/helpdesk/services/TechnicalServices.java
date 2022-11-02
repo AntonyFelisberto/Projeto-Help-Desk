@@ -8,16 +8,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class TechnicalServices {
 
     private TechnicalRepository technicalRepository;
 
-
-
     public Technical findById(Integer id){
         return technicalRepository.findById(id).orElseThrow(() -> new NotFoundException("Objeto não encontrado pelo id: "+id));
     }
 
+
+    public List<Technical> findAll() {
+        return technicalRepository.findAll();
+    }
 }

@@ -1,6 +1,7 @@
 package com.antony.helpdesk.model;
 
 import com.antony.helpdesk.abstractions.Person;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ public class Technical extends Person {
 
     private static final long serialVersionUID = 1L;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "tecnico")
     private List<Call> chamados = new ArrayList<>();
 

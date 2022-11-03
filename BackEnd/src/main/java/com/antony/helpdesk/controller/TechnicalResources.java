@@ -3,6 +3,7 @@ package com.antony.helpdesk.controller;
 import com.antony.helpdesk.dto.TechnicalDTO;
 import com.antony.helpdesk.model.Technical;
 import com.antony.helpdesk.services.TechnicalServices;
+import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/technical")
+@AllArgsConstructor
 public class TechnicalResources {
 
     private TechnicalServices technicalServices;
@@ -39,7 +41,7 @@ public class TechnicalResources {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Integer id){
+    public ResponseEntity<TechnicalDTO> delete(@PathVariable Integer id){
         technicalServices.delete(id);
         return ResponseEntity.noContent().build();
     }

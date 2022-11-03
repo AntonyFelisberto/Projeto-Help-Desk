@@ -36,6 +36,14 @@ public class ClientServices {
         return clientRepository.save(new Client(clientDTO));
     }
 
+    public Client update(Integer id, ClientDTO clientDto) {
+        clientDto.setPersonId(null);
+        Client client = findById(id);
+        validarPorCpfEmail(clientDto);
+        client = new Client(clientDto);
+        return clientRepository.save(client);
+    }
+
     private void validarPorCpfEmail(ClientDTO clientDTO) {
         Optional<Person> personCpf = personRepository.findByCpf(clientDTO.getCpf());
         Optional<Person> personEmail = personRepository.findByEmail(clientDTO.getEmail());
@@ -55,5 +63,4 @@ public class ClientServices {
             clientRepository.deleteById(id);
         }
     }
-
 }

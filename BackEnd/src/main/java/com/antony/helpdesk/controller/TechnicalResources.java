@@ -1,6 +1,8 @@
 package com.antony.helpdesk.controller;
 
+import com.antony.helpdesk.dto.ClientDTO;
 import com.antony.helpdesk.dto.TechnicalDTO;
+import com.antony.helpdesk.model.Client;
 import com.antony.helpdesk.model.Technical;
 import com.antony.helpdesk.services.TechnicalServices;
 import lombok.AllArgsConstructor;
@@ -38,6 +40,12 @@ public class TechnicalResources {
         Technical technical = technicalServices.create(technicalDto);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(technical.getPersonId()).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<TechnicalDTO> update(@PathVariable Integer id, @Valid @RequestBody TechnicalDTO technicalDTO){
+        Technical technical = technicalServices.update(id,technicalDTO);
+        return ResponseEntity.ok().body(new TechnicalDTO(technical));
     }
 
     @DeleteMapping(value = "/{id}")

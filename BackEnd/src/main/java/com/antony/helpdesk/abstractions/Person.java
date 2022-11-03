@@ -4,6 +4,7 @@ import com.antony.helpdesk.enums.Profile;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,6 +25,7 @@ public abstract class Person implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer personId;
     protected String name;
+    @CPF
     @Column(unique = true)
     protected String cpf;
     @Column(unique = true)

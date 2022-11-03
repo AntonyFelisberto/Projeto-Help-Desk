@@ -4,6 +4,7 @@ import com.antony.helpdesk.abstractions.Person;
 import com.antony.helpdesk.dto.TechnicalDTO;
 import com.antony.helpdesk.exceptions.DataIntegrityException;
 import com.antony.helpdesk.exceptions.NotFoundException;
+import com.antony.helpdesk.model.Client;
 import com.antony.helpdesk.model.Technical;
 import com.antony.helpdesk.repositories.PersonRepository;
 import com.antony.helpdesk.repositories.TechnicalRepository;
@@ -36,6 +37,14 @@ public class TechnicalServices {
         return technicalRepository.save(new Technical(technicalDto));
     }
 
+    public Technical update(Integer id, TechnicalDTO technicalDTO) {
+        technicalDTO.setPersonId(null);
+        Technical technical = findById(id);
+        validarPorCpfEmail(technicalDTO);
+        technical = new Technical(technicalDTO);
+        return technicalRepository.save(technical);
+    }
+
     private void validarPorCpfEmail(TechnicalDTO technicalDto) {
         Optional<Person> personCpf = personRepository.findByCpf(technicalDto.getCpf());
         Optional<Person> personEmail = personRepository.findByEmail(technicalDto.getEmail());
@@ -55,4 +64,5 @@ public class TechnicalServices {
             technicalRepository.deleteById(id);
         }
     }
+
 }

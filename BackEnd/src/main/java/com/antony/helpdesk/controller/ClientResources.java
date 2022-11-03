@@ -42,6 +42,12 @@ public class ClientResources {
         return ResponseEntity.created(uri).build();
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<ClientDTO> update(@PathVariable Integer id,@Valid @RequestBody ClientDTO clientDto){
+        Client client = clientServices.update(id,clientDto);
+        return ResponseEntity.ok().body(new ClientDTO(client));
+    }
+
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<ClientDTO> delete(@PathVariable Integer id){
         clientServices.delete(id);

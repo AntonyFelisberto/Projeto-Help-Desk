@@ -23,17 +23,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     private AuthenticationManager authenticationManager;
     private JWTUtil jwtUtil;
 
-
-//    public JWTAuthenticationFilter(){
-//        super();
-//    }
-//
-//    public JWTAuthenticationFilter(AuthenticationManager authenticationManager,JWTUtil jwtUtil){
-//        super();
-//        this.authenticationManager = authenticationManager;
-//        this.jwtUtil = jwtUtil;
-//    }
-
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try{
@@ -50,11 +39,12 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     }
 
     @Override
-    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-        String user = ((UserSpringSecurity) authResult.getPrincipal()).getUsername();
-        String token = jwtUtil.generateToken(user);
-        response.setHeader("access-control-expose-headers","Authorization");
-        response.setHeader("Authorization","Bearer "+token);
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult){
+            String user = ((UserSpringSecurity) authResult.getPrincipal()).getUsername();
+            String token = null;
+            token = jwtUtil.generateToken(user);
+            response.setHeader("access-control-expose-headers","Authorization");
+            response.setHeader("Authorization","Bearer "+token);
     }
 
     @Override

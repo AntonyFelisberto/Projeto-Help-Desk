@@ -5,6 +5,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.crypto.spec.SecretKeySpec;
+import java.security.Key;
 import java.util.Date;
 
 @Component
@@ -16,21 +18,15 @@ public class JWTUtil {
     private String secretKey;
 
     public String generateToken(String email){
-        return Jwts.builder()
+        Key hmacKey = new SecretKeySpec(secretKey.getBytes(),SignatureAlgorithm.HS512.getJcaName());
+
+        String jwtToken = Jwts.builder()
                 .setSubject(email)
                 .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
-                .signWith(SignatureAlgorithm.HS512,secretKey.getBytes())
+                .signWith(hmacKey)
                 .compact();
+
+        return jwtToken;
     }
-
-//    SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS512);
-
-//    public String generateToken(String email){
-//        return Jwts.builder()
-//                .setSubject(email)
-//                .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
-//                .signWith(key)
-//                .compact();
-//    }
 
 }

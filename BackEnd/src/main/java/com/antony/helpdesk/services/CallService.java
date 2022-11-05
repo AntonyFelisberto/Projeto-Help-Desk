@@ -5,6 +5,7 @@ import com.antony.helpdesk.model.Call;
 import com.antony.helpdesk.repositories.CallRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,6 +16,10 @@ public class CallService {
     public Call findById(Integer id) {
         Optional<Call> chamado = callRepository.findById(id);
         return chamado.orElseThrow(() -> new NotFoundException("Chamado não encontrado com id: " + id));
+    }
+
+    public List<Call> findAll() {
+        return callRepository.findAll();
     }
 
 }

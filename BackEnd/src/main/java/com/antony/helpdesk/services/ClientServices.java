@@ -8,6 +8,7 @@ import com.antony.helpdesk.model.Client;
 import com.antony.helpdesk.repositories.ClientRepository;
 import com.antony.helpdesk.repositories.PersonRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,8 @@ public class ClientServices {
 
     private PersonRepository personRepository;
 
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     public Client findById(Integer id){
         return clientRepository.findById(id).orElseThrow(() -> new NotFoundException("Objeto não encontrado pelo id: "+id));
     }
@@ -32,6 +35,7 @@ public class ClientServices {
 
     public Client create(ClientDTO clientDTO) {
         clientDTO.setPersonId(null);
+        clientDTO.setPassword(bCryptPasswordEncoder.encode(clientDTO.getPassword()));
         validarPorCpfEmail(clientDTO);
         return clientRepository.save(new Client(clientDTO));
     }

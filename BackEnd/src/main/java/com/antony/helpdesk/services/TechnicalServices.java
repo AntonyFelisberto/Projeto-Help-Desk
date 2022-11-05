@@ -4,11 +4,11 @@ import com.antony.helpdesk.abstractions.Person;
 import com.antony.helpdesk.dto.TechnicalDTO;
 import com.antony.helpdesk.exceptions.DataIntegrityException;
 import com.antony.helpdesk.exceptions.NotFoundException;
-import com.antony.helpdesk.model.Client;
 import com.antony.helpdesk.model.Technical;
 import com.antony.helpdesk.repositories.PersonRepository;
 import com.antony.helpdesk.repositories.TechnicalRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,6 +22,8 @@ public class TechnicalServices {
 
     private PersonRepository personRepository;
 
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+
     public Technical findById(Integer id){
         return technicalRepository.findById(id).orElseThrow(() -> new NotFoundException("Objeto não encontrado pelo id: "+id));
     }
@@ -33,6 +35,7 @@ public class TechnicalServices {
 
     public Technical create(TechnicalDTO technicalDto) {
         technicalDto.setPersonId(null);
+        technicalDto.setPassword(bCryptPasswordEncoder.encode(technicalDto.getPassword()));
         validarPorCpfEmail(technicalDto);
         return technicalRepository.save(new Technical(technicalDto));
     }

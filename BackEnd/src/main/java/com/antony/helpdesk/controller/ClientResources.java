@@ -1,9 +1,7 @@
 package com.antony.helpdesk.controller;
 
 import com.antony.helpdesk.dto.ClientDTO;
-import com.antony.helpdesk.dto.TechnicalDTO;
 import com.antony.helpdesk.model.Client;
-import com.antony.helpdesk.model.Technical;
 import com.antony.helpdesk.services.ClientServices;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

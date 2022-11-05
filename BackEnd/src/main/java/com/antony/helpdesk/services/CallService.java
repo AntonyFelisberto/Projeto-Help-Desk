@@ -2,7 +2,6 @@ package com.antony.helpdesk.services;
 
 import com.antony.helpdesk.dto.CallDTO;
 import com.antony.helpdesk.enums.Priority;
-import com.antony.helpdesk.enums.Profile;
 import com.antony.helpdesk.enums.Status;
 import com.antony.helpdesk.exceptions.NotFoundException;
 import com.antony.helpdesk.model.Call;

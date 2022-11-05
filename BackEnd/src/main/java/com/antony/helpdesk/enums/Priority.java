@@ -14,7 +14,7 @@ public enum Priority {
         this.description = description;
     }
 
-    public static Priority getEnum(Integer id){
+    public static Priority toEnum(Integer id){
         if(id == null){
             return null;
         }

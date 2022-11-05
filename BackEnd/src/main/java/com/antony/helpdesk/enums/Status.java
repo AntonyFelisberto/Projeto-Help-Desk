@@ -14,7 +14,7 @@ public enum Status {
         this.description = description;
     }
 
-    public static Status getEnum(Integer id){
+    public static Status toEnum(Integer id){
         if(id == null){
             return null;
         }

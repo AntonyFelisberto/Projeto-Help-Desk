@@ -40,4 +40,10 @@ public class CallController {
         return ResponseEntity.created(url).build();
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<CallDTO> atualizar(@PathVariable Integer id,@Valid @RequestBody CallDTO callDTO){
+        Call call = callService.update(id,callDTO);
+        return ResponseEntity.ok().body(new CallDTO(call));
+    }
+
 }

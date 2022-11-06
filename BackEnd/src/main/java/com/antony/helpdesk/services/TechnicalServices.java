@@ -43,6 +43,11 @@ public class TechnicalServices {
     public Technical update(Integer id, TechnicalDTO technicalDTO) {
         technicalDTO.setPersonId(null);
         Technical technical = findById(id);
+
+        if(!technicalDTO.getPassword().equals(technical.getPassword())){
+            technical.setPassword(bCryptPasswordEncoder.encode(technicalDTO.getPassword()));
+        }
+
         validarPorCpfEmail(technicalDTO);
         technical = new Technical(technicalDTO);
         return technicalRepository.save(technical);

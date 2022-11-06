@@ -1,11 +1,13 @@
 package com.antony.helpdesk.config;
 
 import com.antony.helpdesk.security.JWTAuthenticationFilter;
+import com.antony.helpdesk.security.JWTAuthorizationFilter;
 import com.antony.helpdesk.security.JWTUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
@@ -25,9 +27,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 
-@EnableWebSecurity
 @Configuration
-@RequiredArgsConstructor
+@EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
@@ -49,19 +50,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
         http.cors().and().csrf().disable();
         http.addFilter(new JWTAuthenticationFilter(authenticationManager(),jwtUtil));
+        http.addFilter(new JWTAuthorizationFilter(authenticationManager(),jwtUtil,userDetailsService));
         http.authorizeRequests().antMatchers(SECURE_PATTERNS).permitAll().anyRequest().authenticated();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
 
     @Bean
     CorsConfigurationSource corsConfigurationSource(){
         CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**",configuration);
         return source;

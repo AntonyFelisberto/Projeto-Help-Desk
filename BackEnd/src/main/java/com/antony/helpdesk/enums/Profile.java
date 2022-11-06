@@ -15,6 +15,14 @@ public enum Profile {
         this.description = description;
     }
 
+    public Integer getCode() {
+        return code;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
     public static Profile toEnum(Integer code){
         if(code == null){
             return null;
@@ -29,12 +37,5 @@ public enum Profile {
         throw new IllegalArgumentException("Perfil invalido");
     }
 
-    public Integer getCode() {
-        return code;
-    }
-
-    public String getDescription() {
-        return description;
-    }
 
 }

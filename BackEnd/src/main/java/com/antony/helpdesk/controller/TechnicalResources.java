@@ -5,6 +5,7 @@ import com.antony.helpdesk.model.Technical;
 import com.antony.helpdesk.services.TechnicalServices;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -33,6 +34,7 @@ public class TechnicalResources {
         return ResponseEntity.ok().body(technical);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PostMapping
     public ResponseEntity<TechnicalDTO> create(@Valid @RequestBody TechnicalDTO technicalDto){
         Technical technical = technicalServices.create(technicalDto);
@@ -40,12 +42,14 @@ public class TechnicalResources {
         return ResponseEntity.created(uri).build();
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<TechnicalDTO> update(@PathVariable Integer id, @Valid @RequestBody TechnicalDTO technicalDTO){
         Technical technical = technicalServices.update(id,technicalDTO);
         return ResponseEntity.ok().body(new TechnicalDTO(technical));
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<TechnicalDTO> delete(@PathVariable Integer id){
         technicalServices.delete(id);

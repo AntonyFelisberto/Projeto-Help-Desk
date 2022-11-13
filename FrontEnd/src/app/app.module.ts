@@ -34,6 +34,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { TechnicalComponent } from './components/technical/technical.component';
 import { LoginComponent } from './components/login/login.component'
+import { AuthInterceptorProvider } from './models/Interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +71,7 @@ import { LoginComponent } from './components/login/login.component'
       progressBar:true
     })
   ],
-  providers: [],
+  providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -32,9 +32,10 @@ import { ToastrModule } from 'ngx-toastr';
 import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
-import { TechnicalComponent } from './components/technical/technical.component';
+import { TechnicalComponent } from './components/technical-list/technical.component';
 import { LoginComponent } from './components/login/login.component'
 import { AuthInterceptorProvider } from './models/Interceptor';
+import { TecnicoCreateComponent } from './components/tecnico-create/tecnico-create.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,8 @@ import { AuthInterceptorProvider } from './models/Interceptor';
     HomeComponent,
     HeaderComponent,
     TechnicalComponent,
-    LoginComponent
+    LoginComponent,
+    TecnicoCreateComponent
   ],
   imports: [
     BrowserModule,

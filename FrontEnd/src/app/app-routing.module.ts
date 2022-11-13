@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavComponent } from './components/nav/nav.component';
-import { TechnicalComponent } from './components/technical/technical.component';
+import { TechnicalComponent } from './components/technical-list/technical.component';
+import { TecnicoCreateComponent } from './components/tecnico-create/tecnico-create.component';
 import { AutenticationRouteGuard } from './services/guard/autentication-route.guard';
 
 const routes: Routes = [
@@ -15,7 +16,8 @@ const routes: Routes = [
       canActivate:[AutenticationRouteGuard],
         children:[
           {path:'home',component:HomeComponent},
-          {path:'technical',component:TechnicalComponent}
+          {path:'technical',component:TechnicalComponent},
+          {path:'technical/create',component:TecnicoCreateComponent}
         ]
   }
 ];

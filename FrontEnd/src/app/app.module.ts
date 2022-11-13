@@ -36,6 +36,7 @@ import { TechnicalComponent } from './components/technical-list/technical.compon
 import { LoginComponent } from './components/login/login.component'
 import { AuthInterceptorProvider } from './models/Interceptor';
 import { TecnicoCreateComponent } from './components/tecnico-create/tecnico-create.component';
+import { NgxMaskModule } from 'ngx-mask';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +68,7 @@ import { TecnicoCreateComponent } from './components/tecnico-create/tecnico-crea
     MatIconModule,
     MatListModule,
     MatCardModule,
+    NgxMaskModule.forRoot(),
     ToastrModule.forRoot({
       timeOut:4000,
       closeButton: true,

@@ -27,3 +27,9 @@ p{
     margin-top: 1rem;
     opacity: .5;
 }
+mat-icon{
+    color: rgb(73, 70, 70);
+}
+input,mat-label,mat-checkbox{
+    color: #000;
+}

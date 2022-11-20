@@ -21,7 +21,7 @@ export class TechnicalComponent implements OnInit {
     this.findAll()
   }
 
-  displayedColumns: string[] = ['id', 'name', 'cpf', 'email','actions'];
+  displayedColumns: string[] = ['personId', 'name', 'cpf', 'email','actions'];
   dataSource = new MatTableDataSource<Technical>(this.ELEMENT_DATA);
 
   findAll(){

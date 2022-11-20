@@ -1,5 +1,5 @@
 export interface Technical{
-    id?:any,
+    personId?:any,
     name: string,
     cpf: string,
     email:string,

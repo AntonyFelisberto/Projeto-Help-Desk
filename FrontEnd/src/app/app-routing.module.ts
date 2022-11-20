@@ -17,7 +17,8 @@ const routes: Routes = [
         children:[
           {path:'home',component:HomeComponent},
           {path:'technical',component:TechnicalComponent},
-          {path:'technical/create',component:TecnicoCreateComponent}
+          {path:'technical/create',component:TecnicoCreateComponent},
+          {path:'technical/update/:id',component:TecnicoCreateComponent}
         ]
   }
 ];

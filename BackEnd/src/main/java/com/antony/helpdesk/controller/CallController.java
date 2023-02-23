@@ -27,7 +27,7 @@ public class CallController {
     }
 
     @GetMapping()
-    public ResponseEntity<List<CallDTO>> findById(){
+    public ResponseEntity<List<CallDTO>> findAll(){
         List<Call> call = callService.findAll();
         List<CallDTO> callDTOs = call.stream().map(calls -> new CallDTO(calls)).collect(Collectors.toList());
         return ResponseEntity.ok().body(callDTOs);
@@ -41,7 +41,7 @@ public class CallController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<CallDTO> atualizar(@PathVariable Integer id,@Valid @RequestBody CallDTO callDTO){
+    public ResponseEntity<CallDTO> update(@PathVariable Integer id,@Valid @RequestBody CallDTO callDTO){
         Call call = callService.update(id,callDTO);
         return ResponseEntity.ok().body(new CallDTO(call));
     }

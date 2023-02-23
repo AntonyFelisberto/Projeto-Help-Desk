@@ -28,6 +28,7 @@ import {MatListModule} from '@angular/material/list'
 import {MatCardModule} from '@angular/material/card';
 
 import { ToastrModule } from 'ngx-toastr';
+import { NgxMaskModule } from 'ngx-mask';
 
 import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home/home.component';
@@ -36,7 +37,6 @@ import { TechnicalComponent } from './components/technical-list/technical.compon
 import { LoginComponent } from './components/login/login.component'
 import { AuthInterceptorProvider } from './models/Interceptor';
 import { TecnicoCreateComponent } from './components/tecnico-create/tecnico-create.component';
-import { NgxMaskModule } from 'ngx-mask';
 import { TecnicoUpdateComponent } from './components/tecnico-update/tecnico-update.component';
 @NgModule({
   declarations: [

@@ -33,7 +33,7 @@
             <mat-icon matSuffix>password</mat-icon>
           </mat-form-field>
 
-          <button [disabled]="validaCampos()" (click)="update()" class="fullWidth mat-elevation-z4" mat-raised-button color="accent">Atualizar</button>
+          <button [disabled]="!validaCampos()" (click)="update()" class="fullWidth mat-elevation-z4" mat-raised-button color="accent">Atualizar</button>
           <button routerLink="../../" class="fullWidth mat-elevation-z4" mat-raised-button color="warn">Cancelar</button>
 
           

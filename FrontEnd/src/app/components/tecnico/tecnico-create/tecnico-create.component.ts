@@ -33,8 +33,6 @@ export class TecnicoCreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
-
   create():void{
       this.technicalService.create(this.technical).subscribe(
         () => {
@@ -51,7 +49,7 @@ export class TecnicoCreateComponent implements OnInit {
         }
       )
   }
-  
+
   addPerfil(perfil:any):void{
     if(this.technical.profile.includes(perfil)){
       this.technical.profile.splice(this.technical.profile.indexOf(perfil),1)

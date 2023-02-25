@@ -19,9 +19,9 @@ public class Call implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dateOpening = LocalDate.now();
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate dateClosed;
     private Priority priority;
     private Status status;

@@ -8,6 +8,7 @@ import com.antony.helpdesk.model.Call;
 import com.antony.helpdesk.model.Client;
 import com.antony.helpdesk.model.Technical;
 import com.antony.helpdesk.repositories.CallRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -15,7 +16,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class CallService {
+
 
     private CallRepository callRepository;
 
@@ -61,7 +64,5 @@ public class CallService {
         call.setTitle(callDto.getTitle());
         return call;
     }
-
-
 
 }

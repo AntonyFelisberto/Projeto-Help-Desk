@@ -12,7 +12,6 @@ import { TecnicoService } from 'src/app/services/tecnicoService/tecnico.service'
 })
 export class TecnicoUpdateComponent implements OnInit {
 
-
   technical:Technical ={
     name: '',
     cpf: '',
@@ -51,16 +50,16 @@ export class TecnicoUpdateComponent implements OnInit {
         () => {
           this.toast.success('Tecnico atualizado com sucesso','Atualizado com sucesso')
           this.router.navigate(['technical'])
+        },exception =>{
+          if(exception.error.errors){
+            exception.error.errors.forEach(erros => {
+              this.toast.error(erros.message);
+            });
+          }else{
+            this.toast.error(exception.error.message);
+          }
         }
-      ),exception =>{
-        if(exception.error.errors){
-          exception.error.errors.forEach(erros => {
-            this.toast.error(erros.message);
-          });
-        }else{
-          this.toast.error(exception.error.message);
-        }
-      }
+      )
   }
   
   addPerfil(perfil:any):void{

@@ -33,11 +33,17 @@ import { NgxMaskModule } from 'ngx-mask';
 import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
-import { TechnicalComponent } from './components/technical-list/technical.component';
+import { TechnicalComponent } from './components/tecnico/technical-list/technical.component';
 import { LoginComponent } from './components/login/login.component'
 import { AuthInterceptorProvider } from './models/Interceptor';
-import { TecnicoCreateComponent } from './components/tecnico-create/tecnico-create.component';
-import { TecnicoUpdateComponent } from './components/tecnico-update/tecnico-update.component';
+import { TecnicoCreateComponent } from './components/tecnico/tecnico-create/tecnico-create.component';
+import { TecnicoUpdateComponent } from './components/tecnico/tecnico-update/tecnico-update.component';
+import { TecnicoDeleteComponent } from './components/tecnico/tecnico-delete/tecnico-delete.component';
+import { ClientListComponent } from './components/client/client-list/client-list.component';
+import { ClientCreateComponent } from './components/client/client-create/client-create.component';
+import { ClientUpdateComponent } from './components/client/client-update/client-update.component';
+import { ClientDeleteComponent } from './components/client/client-delete/client-delete.component';
+import { ChamadoListComponent } from './components/chamado/chamado-list/chamado-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +53,13 @@ import { TecnicoUpdateComponent } from './components/tecnico-update/tecnico-upda
     TechnicalComponent,
     LoginComponent,
     TecnicoCreateComponent,
-    TecnicoUpdateComponent
+    TecnicoUpdateComponent,
+    TecnicoDeleteComponent,
+    ClientListComponent,
+    ClientCreateComponent,
+    ClientUpdateComponent,
+    ClientDeleteComponent,
+    ChamadoListComponent
   ],
   imports: [
     BrowserModule,

@@ -27,5 +27,9 @@ export class TecnicoService {
   create(technical:Technical): Observable<Technical>{
     return this.httpCliente.post<Technical>(`${API_CONFIG.baseUrl}/technical`,technical)
   }
-  
+
+  delete(id:any): Observable<Technical>{
+    return this.httpCliente.delete<Technical>(`${API_CONFIG.baseUrl}/technical/${id}`)
+  }
+
 }

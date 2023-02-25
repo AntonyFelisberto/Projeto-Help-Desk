@@ -40,16 +40,16 @@ export class TecnicoCreateComponent implements OnInit {
         () => {
           this.toast.success('Tecnico cadastrados com sucesso','Cadastro com sucesso')
           this.router.navigate(['technical'])
+        },exception =>{
+          if(exception.error.errors){
+            exception.error.errors.forEach(erros => {
+              this.toast.error(erros.message);
+            });
+          }else{
+            this.toast.error(exception.error.message);
+          }
         }
-      ),exception =>{
-        if(exception.error.errors){
-          exception.error.errors.forEach(erros => {
-            this.toast.error(erros.message);
-          });
-        }else{
-          this.toast.error(exception.error.message);
-        }
-      }
+      )
   }
   
   addPerfil(perfil:any):void{
